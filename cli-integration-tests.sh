@@ -6,12 +6,15 @@ CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 
 # Reference
 REFERENCE_NAME=ref
+REFERENCE_NAME_GENES=ref_genes
 FASTA=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta
+FASTA_NO_EXT=$(basename "$FASTA" | cut -d. -f1)
 
 # Datasets
 
 # Files
-GTF=GTF
+GTF=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz
+GTF_INDEX=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz.tbi
 
 #-----------------INIT WORKING DIRECTORY------------------
 
@@ -32,6 +35,8 @@ tar -zxvf ngb-cli-2.3.tar.gz
 echo 'TEST: Download data'
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz.tbi
 
 #-----------------INIT NGB AND CLI------------------
 # Start NGB as a service
@@ -65,14 +70,15 @@ echo 'Should register reference with explicit name'
 ./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} && echo 'PASSED' && echo
 
 ## reg_ref -g
-## <TODO>
+echo 'Should register reference with explicit name and genes file'
+./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX} && echo 'PASSED' && echo
 
 ## list_ref
 ## <TODO>
 
 ## del_ref
 echo 'Should delete reference with default name'
-./ngb del_ref ${FASTA} && echo 'PASSED' && echo
+./ngb del_ref ${FASTA_NO_EXT} && echo 'PASSED' && echo
 
 echo 'Should delete reference with explicit name'
 ./ngb del_ref ${REFERENCE_NAME} && echo 'PASSED' && echo
