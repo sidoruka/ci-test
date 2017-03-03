@@ -20,6 +20,7 @@ function it {
       print_error FAILED
     fi
   else
+    ((SKIPPED_COUNT++))
     echo "SKIPPED"
   fi
   
@@ -31,6 +32,7 @@ function it {
 # General
 FAILED_COUNT=0
 PASSED_COUNT=0
+SKIPPED_COUNT=0
 NGS_FOLDER=/ngs/
 CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 
@@ -229,9 +231,10 @@ it \
 ## <TODO>
 
 # Tests results
-echo TOTAL: $((PASSED_COUNT + FAILED_COUNT))
+echo TOTAL: $((PASSED_COUNT + FAILED_COUNT + SKIPPED_COUNT))
 print_success "  PASSED: ${PASSED_COUNT}"
 print_error "  FAILED: ${FAILED_COUNT}"
+echo "  SKIPPED: ${SKIPPED_COUNT}"
 
 if ((FAILED_COUNT>0)); then
   exit 1
