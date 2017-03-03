@@ -168,6 +168,26 @@ it \
 it \
     "Should find registered VCF file by strict name and output in a table format" \
     "./ngb search ${VCF_SNP_NAME} -t"
+    
+it \
+    "Should generate url for whole dataset" \
+    "./ngb url ${DATASET_ROOT}"
+
+it \
+    "Should generate url for whole root dataset at 1st chr" \
+    "./ngb url ${DATASET_ROOT} --location chr1"
+
+it \
+    "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
+    "./ngb url ${DATASET_ROOT} --location chr1:1000-2000"
+    
+it \
+    "Should generate url for only one BAM file from a root dataset at 1st chr and range 1000bp-2000bp" \
+    "./ngb url ${DATASET_ROOT} ${BAM_NAME} --location chr1:1000-2000"
+    
+it \
+    "Should generate url for only BAM and VCF files from a root dataset at 1st chr and range 1000bp-2000bp" \
+    "./ngb url ${DATASET_ROOT} ${BAM_NAME} ${VCF_SNP_NAME} --location chr1:1000-2000"
 
 echo
 echo Scenario 1. Simple Dataset. Clean-up phase - delete registered items
