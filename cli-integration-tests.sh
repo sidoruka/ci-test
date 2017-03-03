@@ -41,6 +41,7 @@ REFERENCE_NAME=ref
 FASTA=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta
 FASTA_INDEX=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta.fai
 FASTA_NO_EXT="$(basename "$FASTA" | sed -e 's/\.[^.]*$//')"
+CHR=X
 
 # Datasets
 DATASET_ROOT=root_dataset
@@ -175,19 +176,19 @@ it \
 
 it \
     "Should generate url for whole root dataset at 1st chr" \
-    "./ngb url ${DATASET_ROOT} --location chr1"
+    "./ngb url ${DATASET_ROOT} --location ${CHR}"
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
-    "./ngb url ${DATASET_ROOT} --location chr1:1000-2000"
+    "./ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000"
     
 it \
     "Should generate url for only one BAM file from a root dataset at 1st chr and range 1000bp-2000bp" \
-    "./ngb url ${DATASET_ROOT} ${BAM_NAME} --location chr1:1000-2000"
+    "./ngb url ${DATASET_ROOT} ${BAM_NAME} --location ${CHR}:1000-2000"
     
 it \
     "Should generate url for only BAM and VCF files from a root dataset at 1st chr and range 1000bp-2000bp" \
-    "./ngb url ${DATASET_ROOT} ${BAM_NAME} ${VCF_SNP_NAME} --location chr1:1000-2000"
+    "./ngb url ${DATASET_ROOT} ${BAM_NAME} ${VCF_SNP_NAME} --location ${CHR}:1000-2000"
 
 echo
 echo Scenario 1. Simple Dataset. Clean-up phase - delete registered items
