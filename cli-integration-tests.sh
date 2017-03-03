@@ -11,7 +11,7 @@ function print_error {
 function it {
   echo $1
   echo "--> "$2
-  if [ -z "$3" ] then
+  if [ -z "$3" ]; then
       echo "SKIPPED"    
   else
     if $2; then
