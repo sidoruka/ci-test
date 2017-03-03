@@ -102,7 +102,7 @@ cd ${CLI_FOLDER}
 
 #-----------------TESTS------------------
 echo
-echo Scenario 1. Registration phase
+echo Scenario 1. Simple Dataset. Registration phase
 echo ------------------------------
 
 it \
@@ -142,7 +142,7 @@ it \
     "./ngb add_dataset ${DATASET_ROOT} ${VCF_SNP_NAME}"
 
 echo
-echo Scenario 1. Check phase - search registered items
+echo Scenario 1. Simple Dataset. Check phase - search registered items
 echo ------------------------------
 
 it \
@@ -170,7 +170,7 @@ it \
     "./ngb search ${VCF_SNP_NAME} -t"
 
 echo
-echo Scenario 1. Clean-up phase - delete registered items
+echo Scenario 1. Simple Dataset. Clean-up phase - delete registered items
 echo ------------------------------
 
 it \
@@ -210,33 +210,16 @@ it \
 ## reg_ref
 ## <TODO>
 
-## reg_ref -n 
-## <TODO>
-
 ## reg_ref -g
 ## <TODO>
 
 ## reg_ref -ngc
 ## <TODO>
 
-## list_ref
-## <TODO>
-
-## del_ref
-
-## add_genes [file-names]
-## <TODO>
-
 ## add_genes [file-paths]
 ## <TODO>
 
-## remove_genes
-## <TODO>
-
 # Datasets commands
-
-## reg_dataset
-## <TODO>
 
 ## reg_dataset -p
 ## <TODO>
@@ -247,19 +230,13 @@ it \
 ## reg_dataset [file-paths]
 ## <TODO>
 
-## add_dataset
-## <TODO>
-
-## remove_dataset
+## add_dataset [file-paths]
 ## <TODO>
 
 ## move_dataset
 ## <TODO>
 
 ## list_dataset -p
-## <TODO>
-
-## del_dataset
 ## <TODO>
 
 ## url 
