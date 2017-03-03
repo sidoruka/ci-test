@@ -259,19 +259,6 @@ it \
 ## list_dataset -p
 ## <TODO>
 
-## url 
-## <TODO>
-
-## url -loc:chr
-## <TODO>
-
-## url -loc:chr:range
-## <TODO>
-
-## url -[file-names]
-## <TODO>
-
-
 # Files
 ## BAM
 
@@ -313,12 +300,6 @@ it \
 
 
 # General commands
-
-## set_srv
-## <TODO>
-
-## search
-## <TODO>
 
 ## search -l
 ## <TODO>
