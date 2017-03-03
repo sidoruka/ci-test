@@ -9,9 +9,11 @@ function print_error {
 function it {
   echo $1
   if $2; then
+    ((PASSED_COUNT++))
     print_success PASSED
   else
-    echo epic FAILED
+    ((FAILED_COUNT++))
+    print_error FAILED
   fi
   echo
 }  
@@ -19,6 +21,8 @@ function it {
 #-------------INIT VARIABLES-------------
 
 # General
+FAILED_COUNT=0
+PASSED_COUNT=0
 NGS_FOLDER=/ngs/
 CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 
@@ -200,3 +204,7 @@ echo 'Should allow to configure NGB server address'
 
 ## search -l
 ## <TODO>
+
+# Tests results
+print_success "PASSED: ${PASSED_COUNT}"
+print_error "FAILED: ${FAILED_COUNT}"
