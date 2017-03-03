@@ -1,3 +1,21 @@
+function print_success {
+  echo `tput setaf 2`$1`tput sgr0`
+}
+
+function print_error {
+  echo `tput setaf 1`$1`tput sgr0`
+}
+
+function it {
+  echo $1
+  if $2; then
+    print_success PASSED
+  else
+    echo epic FAILED
+  fi
+  echo
+}  
+
 #-------------INIT VARIABLES-------------
 
 # General
@@ -62,8 +80,9 @@ echo 'Reference commands'
 echo '--------'
 
 ## reg_ref
-echo 'Should register reference with default name'
-./ngb reg_ref ${FASTA} && echo 'PASSED' && echo
+it \
+  "Should register reference with default name"
+  "./ngb reg_ref ${FASTA}"
 
 ## reg_ref -n
 echo 'Should register reference with explicit name'
