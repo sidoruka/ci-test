@@ -81,7 +81,7 @@ echo '--------'
 
 ## reg_ref
 it \
-  "Should register reference with default name"
+  "Should register reference with default name" \
   "./ngb reg_ref ${FASTA}"
 
 ## reg_ref -n
