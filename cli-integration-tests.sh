@@ -38,15 +38,25 @@ CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 
 # Reference
 REFERENCE_NAME=ref
-REFERENCE_NAME_GENES=ref_genes
 FASTA=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta
+FASTA_INDEX=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta.fai
 FASTA_NO_EXT="$(basename "$FASTA" | sed -e 's/\.[^.]*$//')"
 
 # Datasets
+DATASET_ROOT=root_dataset
+DATASET_CHILD=child_dataset
 
 # Files
 GTF=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz
 GTF_INDEX=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz.tbi
+GTF_NAME=genes_file
+
+BAM=${NGS_FOLDER}agnX1.09-28.trim.dm606.realign.bam
+BAM_INDEX=${NGS_FOLDER}agnX1.09-28.trim.dm606.realign.bai
+BAM_NAME=bam_file
+
+VCF_SNP=${NGS_FOLDER}agnX1.09-28.trim.dm606.realign.vcf
+VCF_SNP_NAME=vcf_file
 
 #-----------------INIT WORKING DIRECTORY------------------
 
@@ -69,6 +79,9 @@ wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz.tbi
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.bam
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.bai
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.vcf
 
 #-----------------INIT NGB AND CLI------------------
 # Start NGB as a service
@@ -88,27 +101,121 @@ echo 'cd ${CLI_FOLDER}'
 cd ${CLI_FOLDER}
 
 #-----------------TESTS------------------
+echo
+echo Scenario 1. Registration phase
+echo ------------------------------
+
+it \
+  "Should configure NGB server address" \
+  "./ngb set_srv http://localhost:8080/catgenome"
+
+it \
+    "Should register reference with index and explicit name" \
+    "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
+
+it \
+    "Should register gzipped genes file with explicit name" \
+    "./ngb reg_file ${REFERENCE_NAME} ${GTF}?${GTF_INDEX} --name ${GTF_NAME}"
+
+it \
+    "Should assign registered genes file to a reference by name" \
+    "./ngb add_genes ${REFERENCE_NAME} ${GTF_NAME}"
+
+it \
+    "Should register root dataset for reference" \
+    "./ngb reg_dataset ${REFERENCE_NAME} ${DATASET_ROOT}"
+
+it \
+    "Should register BAM file with explicit name" \
+    "./ngb reg_file ${REFERENCE_NAME} ${BAM}?${BAM_INDEX} --name ${BAM_NAME}"
+
+it \
+    "Should add registered BAM file to root dataset" \
+    "./ngb add_dataset ${DATASET_ROOT} ${BAM_NAME}"
+
+it \
+    "Should register VCF file with explicit name" \
+    "./ngb reg_file ${REFERENCE_NAME} ${VCF_SNP} --name ${VCF_SNP_NAME}"
+
+it \
+    "Should add registered VCF file to root dataset" \
+    "./ngb add_dataset ${DATASET_ROOT} ${VCF_SNP_NAME}"
+
+echo
+echo Scenario 1. Check phase (search registered items)
+echo ------------------------------
+
+it \
+    "Should list registered reference and output in a table format" \
+    "./ngb list_ref -t"
+
+it \
+    "Should find registered reference by strict name and output in a table format" \
+    "./ngb search ${REFERENCE_NAME} -t"
+
+it \
+    "Should list registered dataset and output in a table format" \
+    "./ngb list_dataset -t"
+
+it \
+    "Should find registered GTF file by strict name and output in a table format" \
+    "./ngb search ${GTF_NAME} -t"
+
+it \
+    "Should find registered BAM file by strict name and output in a table format" \
+    "./ngb search ${BAM_NAME} -t"
+
+it \
+    "Should find registered VCF file by strict name and output in a table format" \
+    "./ngb search ${VCF_SNP_NAME} -t"
+
+echo
+echo Scenario 1. Clean-up phase (delete registered items)
+echo ------------------------------
+
+it \
+    "Should remove BAM file from dataset" \
+    "./ngb remove_dataset ${DATASET_ROOT} ${BAM_NAME}"
+
+it \
+    "Should remove VCF file from dataset" \
+    "./ngb remove_dataset ${DATASET_ROOT} ${VCF_SNP_NAME}"
+
+it \
+    "Should delete root dataset" \
+    "./ngb del_dataset ${DATASET_ROOT}"
+
+it \
+    "Should delete BAM file" \
+    "./ngb del_file ${BAM_NAME}"
+
+it \
+    "Should delete VCF file" \
+    "./ngb del_file ${VCF_SNP_NAME}"
+
+it \
+    "Should remove GTF file from reference" \
+    "./ngb remove_genes ${REFERENCE_NAME} ${GTF_NAME}"
+
+it \
+    "Should delete GTF file" \
+    "./ngb del_file ${GTF_NAME}"
+
+it \
+    "Should delete reference" \
+    "./ngb del_ref ${REFERENCE_NAME}"
 
 # Reference commands
-echo 'Reference commands'
-echo '--------'
 
 ## reg_ref
-it \
-  "Should register reference with default name" \
-  "./ngb reg_ref ${FASTA}"
+## <TODO>
 
-## reg_ref -n
-it \
-  "Should register reference with explicit name" \
-  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
+## reg_ref -n 
+## <TODO>
 
 ## reg_ref -g
-it \
-  "Should register reference with explicit name and genes file" \
-  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}" \
-  "SKIP"
-  
+## <TODO>
+
 ## reg_ref -ngc
 ## <TODO>
 
@@ -116,13 +223,6 @@ it \
 ## <TODO>
 
 ## del_ref
-it \
-  "Should delete reference with default name" \
-  "./ngb del_ref ${FASTA_NO_EXT}"
-
-it \
-  "Should delete reference with explicit name" \
-  "./ngb del_ref ${REFERENCE_NAME}"
 
 ## add_genes [file-names]
 ## <TODO>
@@ -216,13 +316,9 @@ it \
 
 
 # General commands
-echo 'General commands'
-echo '--------'
 
 ## set_srv
-it \
-  "Should allow to configure NGB server address" \
-  "./ngb set_srv http://localhost:8080/catgenome"
+## <TODO>
 
 ## search
 ## <TODO>
@@ -234,11 +330,10 @@ it \
 echo TOTAL: $((PASSED_COUNT + FAILED_COUNT + SKIPPED_COUNT))
 print_success "  PASSED: ${PASSED_COUNT}"
 print_error "  FAILED: ${FAILED_COUNT}"
-echo "  SKIPPED: ${SKIPPED_COUNT}"
+echo " SKIPPED: ${SKIPPED_COUNT}"
 
 if ((FAILED_COUNT>0)); then
   exit 1
 else
   exit 0
 fi
-
