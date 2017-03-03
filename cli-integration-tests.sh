@@ -217,3 +217,9 @@ it \
 echo TOTAL: $((PASSED_COUNT + FAILED_COUNT))
 print_success "  PASSED: ${PASSED_COUNT}"
 print_error "  FAILED: ${FAILED_COUNT}"
+
+if ((FAILED_COUNT>0)); then
+  exit 1
+else
+  exit 0
+fi
