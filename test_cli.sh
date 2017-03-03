@@ -15,7 +15,7 @@ mv catgenome-2.3.jar catgenome.jar
 echo 'tar -zxvf ngb-cli-2.3.tar.gz'
 tar -zxvf ngb-cli-2.3.tar.gz
 
-echo 'nohup java -Xmx3Gb -jar catgenome.jar &'
+echo 'nohup java -Xmx3G -jar catgenome.jar &'
 nohup java -Xmx3G -jar catgenome.jar &
 
 echo 'sleep 30'
@@ -28,7 +28,36 @@ echo 'cd /ngs/ngb-cli/bin'
 cd /ngs/ngb-cli/bin
 
 echo './ngb reg_ref /ngs/dmel-all-chromosome-r6.06.fasta --name dm6'
-./ngb reg_reg /ngs/dmel-all-chromosome-r6.06.fasta --name dm6
+./ngb reg_ref /ngs/dmel-all-chromosome-r6.06.fasta --name dm6
 
 echo './ngb lr -t'
 ./ngb lr -t
+
+echo './ngb reg_dataset dm6 dm1'
+./ngb reg_dataset dm6 dm1
+
+echo './ngb reg_dataset dm6 dm1_1 -p dm1'
+./ngb reg_dataset dm6 dm1_1 -p dm1
+
+echo './ngb reg_dataset dm6 dm1_2 -p dm1'
+./ngb reg_dataset dm6 dm1_2 -p dm1
+
+echo './ngb reg_dataset dm6 dm2'
+./ngb reg_dataset dm6 dm2
+
+echo './ngb reg_dataset dm6 dm2_1 -p dm2'
+./ngb reg_dataset dm6 dm2_1 -p dm2
+
+echo './ngb reg_dataset dm6 dm2_2 -p dm2'
+./ngb reg_dataset dm6 dm2_2 -p dm2
+
+echo './ngb ld -t'
+./ngb ld -t
+
+echo './ngb ld -p dm1 -t'
+./ngb ld -p dm1 -t
+
+echo './ngb ld -p dm2 -t'
+./ngb ld -p dm2 -t
+
+
