@@ -1,63 +1,117 @@
+# Create integration tests working directory
 echo 'mkdir /ngs && cd /ngs'
 mkdir /ngs && cd /ngs
 
-#echo 'TEST: Download distr'
+echo 'TEST: Download distr'
 wget http://ngb.opensource.epam.com/distr/2.3/catgenome-2.3.jar
 wget http://ngb.opensource.epam.com/distr/2.3/ngb-cli-2.3.tar.gz
-
-#echo 'TEST: Download data'
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
-
+#Rename NGB distr as normally build
 echo 'mv catgenome-2.3.jar catgenome.jar'
 mv catgenome-2.3.jar catgenome.jar
-
+# Unzip CLI
 echo 'tar -zxvf ngb-cli-2.3.tar.gz'
 tar -zxvf ngb-cli-2.3.tar.gz
 
+echo 'TEST: Download data'
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta
+wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
+
+# Start NGB as a service
 echo 'nohup java -Xmx3G -jar catgenome.jar &'
 nohup java -Xmx3G -jar catgenome.jar &
 
+# Give NGB time to start
 echo 'sleep 30'
 sleep 30
 
+# Show start up log
 echo 'cat nohup.out'
 cat nohup.out
 
+# Navigate to CLI command location
 echo 'cd /ngs/ngb-cli/bin'
 cd /ngs/ngb-cli/bin
 
+#-----------------TESTS------------------
+
+# General commands
+echo 'General commands'
+echo '--------'
+
+## set_srv
+echo 'Should allow to configure NGB server address'
+./ngb set_srv http://localhost:8080/catgenome
+
+## search
+
+## search -l
+
+# Reference commands
+echo 'Reference commands'
+echo '--------'
+
+## reg_ref
+echo 'Should register DM6 reference'
 echo './ngb reg_ref /ngs/dmel-all-chromosome-r6.06.fasta --name dm6'
 ./ngb reg_ref /ngs/dmel-all-chromosome-r6.06.fasta --name dm6
 
-echo './ngb lr -t'
-./ngb lr -t
+echo 'Should register GRCh38 reference'
 
-echo './ngb reg_dataset dm6 dm1'
-./ngb reg_dataset dm6 dm1
+## reg_ref -n
 
-echo './ngb reg_dataset dm6 dm1_1 -p dm1'
-./ngb reg_dataset dm6 dm1_1 -p dm1
+## reg_ref -g
 
-echo './ngb reg_dataset dm6 dm1_2 -p dm1'
-./ngb reg_dataset dm6 dm1_2 -p dm1
+# Datasets commands
+echo 'Datasets commands'
+echo '--------'
 
-echo './ngb reg_dataset dm6 dm2'
-./ngb reg_dataset dm6 dm2
+## reg_dataset
 
-echo './ngb reg_dataset dm6 dm2_1 -p dm2'
-./ngb reg_dataset dm6 dm2_1 -p dm2
+## reg_dataset -p
 
-echo './ngb reg_dataset dm6 dm2_2 -p dm2'
-./ngb reg_dataset dm6 dm2_2 -p dm2
+## reg_dataset [file-names]
 
-echo './ngb ld -t'
-./ngb ld -t
+## add_dataset
 
-echo './ngb ld -p dm1 -t'
-./ngb ld -p dm1 -t
+## remove_dataset
 
-echo './ngb ld -p dm2 -t'
-./ngb ld -p dm2 -t
+## move_dataset
 
+## list_dataset -p
 
+## del_dataset
+
+## url 
+
+## url -loc:chr
+
+## url -loc:chr:range
+
+## url -[file-names]
+
+# Files
+## BAM
+
+### reg_file
+
+### reg_file -n
+
+### reg_file -ni
+
+### del_file
+
+### index_file
+
+## CRAM
+
+## GFF
+
+## GTF
+
+## BED
+
+## VCF (SVs, SNPs, InDels)
+
+## BW
+
+## SEG
