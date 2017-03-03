@@ -91,22 +91,26 @@ it \
   "./ngb reg_ref ${FASTA}"
 
 ## reg_ref -n
-echo 'Should register reference with explicit name'
-./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} && echo 'PASSED' && echo
+it \
+  "Should register reference with explicit name" \
+  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
 
 ## reg_ref -g
-echo 'Should register reference with explicit name and genes file'
-./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX} && echo 'PASSED' && echo
+it \
+  "Should register reference with explicit name and genes file" \
+  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX}"
 
 ## list_ref
 ## <TODO>
 
 ## del_ref
-echo 'Should delete reference with default name'
-./ngb del_ref ${FASTA_NO_EXT} && echo 'PASSED' && echo
+it \
+  "Should delete reference with default name" \
+  "./ngb del_ref ${FASTA_NO_EXT}"
 
-echo 'Should delete reference with explicit name'
-./ngb del_ref ${REFERENCE_NAME} && echo 'PASSED' && echo
+it \
+  "Should delete reference with explicit name" \
+  "./ngb del_ref ${REFERENCE_NAME}"
 
 ## add_genes
 ## <TODO>
@@ -198,8 +202,9 @@ echo 'General commands'
 echo '--------'
 
 ## set_srv
-echo 'Should allow to configure NGB server address'
-./ngb set_srv http://localhost:8080/catgenome && echo 'PASSED' && echo
+it \
+  "Should allow to configure NGB server address" \
+  "./ngb set_srv http://localhost:8080/catgenome"
 
 ## search
 ## <TODO>
@@ -208,5 +213,6 @@ echo 'Should allow to configure NGB server address'
 ## <TODO>
 
 # Tests results
-print_success "PASSED: ${PASSED_COUNT}"
-print_error "FAILED: ${FAILED_COUNT}"
+echo "TOTAL: $((num1 + num2))"
+print_success "\tPASSED: ${PASSED_COUNT}"
+print_error "\tFAILED: ${FAILED_COUNT}"
