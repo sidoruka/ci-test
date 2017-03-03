@@ -79,9 +79,9 @@ wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz.tbi
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.bam
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.bai
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/agnX1.09-28.trim.dm606.realign.vcf
+wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.bam
+wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.bai
+wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.vcf
 
 #-----------------INIT NGB AND CLI------------------
 # Start NGB as a service
@@ -142,7 +142,7 @@ it \
     "./ngb add_dataset ${DATASET_ROOT} ${VCF_SNP_NAME}"
 
 echo
-echo Scenario 1. Check phase (search registered items)
+echo Scenario 1. Check phase - search registered items
 echo ------------------------------
 
 it \
@@ -170,7 +170,7 @@ it \
     "./ngb search ${VCF_SNP_NAME} -t"
 
 echo
-echo Scenario 1. Clean-up phase (delete registered items)
+echo Scenario 1. Clean-up phase - delete registered items
 echo ------------------------------
 
 it \
