@@ -195,7 +195,7 @@ it \
 
 it \
     "Should remove GTF file from reference" \
-    "./ngb remove_genes ${REFERENCE_NAME} ${GTF_NAME}"
+    "./ngb remove_genes ${REFERENCE_NAME}"
 
 it \
     "Should delete GTF file" \
