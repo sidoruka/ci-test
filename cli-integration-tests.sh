@@ -12,8 +12,6 @@ function it {
   echo $1
   echo "--> "$2
   if [ -z "$3" ]; then
-      echo "SKIPPED"    
-  else
     if $2; then
       ((PASSED_COUNT++))
       print_success PASSED
@@ -21,6 +19,8 @@ function it {
       ((FAILED_COUNT++))
       print_error FAILED
     fi
+  else
+    echo "SKIPPED"
   fi
   
   echo
@@ -106,6 +106,9 @@ it \
   "Should register reference with explicit name and genes file" \
   "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}" \
   "SKIP"
+  
+## reg_ref -ngc
+## <TODO>
 
 ## list_ref
 ## <TODO>
@@ -119,7 +122,10 @@ it \
   "Should delete reference with explicit name" \
   "./ngb del_ref ${REFERENCE_NAME}"
 
-## add_genes
+## add_genes [file-names]
+## <TODO>
+
+## add_genes [file-paths]
 ## <TODO>
 
 ## remove_genes
@@ -134,6 +140,9 @@ it \
 ## <TODO>
 
 ## reg_dataset [file-names]
+## <TODO>
+
+## reg_dataset [file-paths]
 ## <TODO>
 
 ## add_dataset
