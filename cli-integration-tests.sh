@@ -10,6 +10,7 @@ function print_error {
 
 function it {
   echo $1
+  echo "--> "$2
   if $2; then
     ((PASSED_COUNT++))
     print_success PASSED
@@ -213,6 +214,6 @@ it \
 ## <TODO>
 
 # Tests results
-echo "TOTAL: $((num1 + num2))"
-print_success "\tPASSED: ${PASSED_COUNT}"
-print_error "\tFAILED: ${FAILED_COUNT}"
+echo TOTAL: $((PASSED_COUNT + FAILED_COUNT))
+print_success "  PASSED: ${PASSED_COUNT}"
+print_error "  FAILED: ${FAILED_COUNT}"
