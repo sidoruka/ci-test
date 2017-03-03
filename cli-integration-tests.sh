@@ -11,13 +11,18 @@ function print_error {
 function it {
   echo $1
   echo "--> "$2
-  if $2; then
-    ((PASSED_COUNT++))
-    print_success PASSED
+  if [ -z "$3" ] then
+      echo "SKIPPED"    
   else
-    ((FAILED_COUNT++))
-    print_error FAILED
+    if $2; then
+      ((PASSED_COUNT++))
+      print_success PASSED
+    else
+      ((FAILED_COUNT++))
+      print_error FAILED
+    fi
   fi
+  
   echo
 }  
 
@@ -99,7 +104,8 @@ it \
 ## reg_ref -g
 it \
   "Should register reference with explicit name and genes file" \
-  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}"
+  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}" \
+  "SKIP"
 
 ## list_ref
 ## <TODO>
