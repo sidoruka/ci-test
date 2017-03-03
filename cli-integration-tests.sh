@@ -99,7 +99,7 @@ it \
 ## reg_ref -g
 it \
   "Should register reference with explicit name and genes file" \
-  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}?${GTF_INDEX}"
+  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}"
 
 ## list_ref
 ## <TODO>
