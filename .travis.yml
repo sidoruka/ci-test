@@ -1,0 +1,6 @@
+sudo: required
+dist: trusty
+language: java
+script: 
+  - sudo chmod 777 test_cli.sh
+  - sudo ./test_cli.sh
