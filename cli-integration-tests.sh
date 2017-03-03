@@ -6,7 +6,7 @@ CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 
 # Reference
 REFERENCE_NAME=ref
-FASTA=dmel-all-chromosome-r6.06.fasta
+FASTA=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta
 
 # Datasets
 
@@ -58,11 +58,11 @@ echo '--------'
 
 ## reg_ref
 echo 'Should register reference with default name'
-./ngb reg_ref ${NGS_FOLDER}${FASTA} && echo 'PASSED'
+./ngb reg_ref ${FASTA} && echo 'PASSED' && echo
 
 ## reg_ref -n
 echo 'Should register reference with explicit name'
-./ngb reg_ref ${NGS_FOLDER}${FASTA} --name ${REFERENCE_NAME} && echo 'PASSED'
+./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} && echo 'PASSED' && echo
 
 ## reg_ref -g
 ## <TODO>
@@ -72,10 +72,10 @@ echo 'Should register reference with explicit name'
 
 ## del_ref
 echo 'Should delete reference with default name'
-./ngb del_ref ${FASTA} && echo 'PASSED'
+./ngb del_ref ${FASTA} && echo 'PASSED' && echo
 
 echo 'Should delete reference with explicit name'
-./ngb del_ref ${REFERENCE_NAME} && echo 'PASSED'
+./ngb del_ref ${REFERENCE_NAME} && echo 'PASSED' && echo
 
 ## add_genes
 ## <TODO>
@@ -168,7 +168,7 @@ echo '--------'
 
 ## set_srv
 echo 'Should allow to configure NGB server address'
-./ngb set_srv http://localhost:8080/catgenome
+./ngb set_srv http://localhost:8080/catgenome && echo 'PASSED' && echo
 
 ## search
 ## <TODO>
