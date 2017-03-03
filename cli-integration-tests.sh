@@ -33,7 +33,7 @@ CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
 REFERENCE_NAME=ref
 REFERENCE_NAME_GENES=ref_genes
 FASTA=${NGS_FOLDER}dmel-all-chromosome-r6.06.fasta
-FASTA_NO_EXT=$(basename "$FASTA" | cut -d. -f1)
+FASTA_NO_EXT="$(basename "$FASTA" | sed -e 's/\.[^.]*$//')"
 
 # Datasets
 
@@ -99,7 +99,7 @@ it \
 ## reg_ref -g
 it \
   "Should register reference with explicit name and genes file" \
-  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX}"
+  "./ngb reg_ref ${FASTA} --name ${REFERENCE_NAME_GENES} --genes ${GTF}?${GTF_INDEX}"
 
 ## list_ref
 ## <TODO>
