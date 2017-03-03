@@ -8,20 +8,23 @@ function print_error {
   echo `tput setaf 1`$1`tput sgr0`
 }
 
+function skip_it {
+  echo $1
+  echo "--> "$2
+  ((SKIPPED_COUNT++))
+  echo "SKIPPED"
+  echo
+}
+
 function it {
   echo $1
   echo "--> "$2
-  if [ -z "$3" ]; then
-    if $2; then
-      ((PASSED_COUNT++))
-      print_success PASSED
-    else
-      ((FAILED_COUNT++))
-      print_error FAILED
-    fi
+  if $2; then
+    ((PASSED_COUNT++))
+    print_success PASSED
   else
-    ((SKIPPED_COUNT++))
-    echo "SKIPPED"
+    ((FAILED_COUNT++))
+    print_error FAILED
   fi
   
   echo
@@ -106,7 +109,7 @@ echo
 echo Scenario 1. Simple Dataset. Registration phase
 echo ------------------------------
 
-it \
+skip_it \
   "Should configure NGB server address" \
   "./ngb set_srv http://localhost:8080/catgenome"
 
