@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function print_success {
   echo `tput setaf 2`$1`tput sgr0`
 }
