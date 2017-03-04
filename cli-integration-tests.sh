@@ -132,7 +132,7 @@ echo
 echo Scenario 1. Simple Dataset. Registration phase
 echo ------------------------------
 
-skip_it \
+it \
   "Should configure NGB server address" \
   "./ngb set_srv http://localhost:8080/catgenome"
 
