@@ -19,7 +19,25 @@ function skip_it {
 function it {
   echo $1
   echo "--> "$2
-  if $2; then
+  
+  EXEC_CODE=0
+  if [ -z "$3" ]; then
+    $2
+    EXEC_CODE=$?
+  else
+    EXEC_RESULT=`$2`
+    echo $EXEC_RESULT
+    EXEC_CODE=$?
+    if ! ((EXEC_CODE)); then
+      echo $EXEC_RESULT | grep -q "$3"
+      EXEC_CODE=$?
+      if ((EXEC_CODE)); then
+        print_error "Pattern $3 not found"
+      fi
+    fi
+  fi
+  
+  if ! ((EXEC_CODE)); then
     ((PASSED_COUNT++))
     print_success PASSED
   else
@@ -179,11 +197,13 @@ it \
 
 it \
     "Should generate url for whole root dataset at 1st chr" \
-    "./ngb url ${DATASET_ROOT} --location ${CHR}"
+    "./ngb url ${DATASET_ROOT} --location ${CHR}" \
+    "http://localhost:8080/catgenome/#/ref?tracks=[{"p":"${DATASET_ROOT}"}]"
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
-    "./ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000"
+    "./ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000" \
+    "http://localhost:8080/catgenome/#/ref?tracks=[{"p":"${DATASET_ROOT}"}]"
     
 it \
     "Should generate url for only one BAM file from a root dataset at 1st chr and range 1000bp-2000bp" \
