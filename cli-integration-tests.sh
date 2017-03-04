@@ -8,6 +8,10 @@ function print_error {
   echo `tput setaf 1`$1`tput sgr0`
 }
 
+function escape_string {
+    echo $1 | sed 's/\"/\\"/g' | sed 's/\[/\\[/g' | sed 's/\]/\\]/g'
+}
+
 function skip_it {
   echo $1
   echo "--> "$2
@@ -26,11 +30,12 @@ function it {
     EXEC_CODE=$?
   else
     echo "--> EXP: "$3
+    EXP=$(escape_string $3)
     EXEC_RESULT=`$2`
     echo $EXEC_RESULT
     EXEC_CODE=$?
     if ! ((EXEC_CODE)); then
-      echo $EXEC_RESULT | grep -q "$3"
+      echo $EXEC_RESULT | grep -q "$EXP"
       EXEC_CODE=$?
       if ((EXEC_CODE)); then
         print_error "Pattern $3 not found"
