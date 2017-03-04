@@ -18,13 +18,14 @@ function skip_it {
 
 function it {
   echo $1
-  echo "--> "$2
+  echo "--> CMD: "$2
   
   EXEC_CODE=0
   if [ -z "$3" ]; then
     $2
     EXEC_CODE=$?
   else
+    echo "--> EXP: "$3
     EXEC_RESULT=`$2`
     echo $EXEC_RESULT
     EXEC_CODE=$?
