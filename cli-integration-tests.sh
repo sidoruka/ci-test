@@ -30,12 +30,11 @@ function it {
     EXEC_CODE=$?
   else
     echo "--> EXP: "$3
-    EXP=$(escape_string $3)
     EXEC_RESULT=`$2`
     echo $EXEC_RESULT
     EXEC_CODE=$?
     if ! ((EXEC_CODE)); then
-      echo $EXEC_RESULT | grep -q "$EXP"
+      echo $EXEC_RESULT | grep -q "$3"
       EXEC_CODE=$?
       if ((EXEC_CODE)); then
         print_error "Pattern $3 not found"
@@ -200,12 +199,12 @@ it \
 it \
     "Should generate url for whole dataset" \
     "./ngb url ${DATASET_ROOT}" \
-    'http://localhost:8080/catgenome/#/ref?tracks=[{"p":"${DATASET_ROOT}"}]'
+    'http://localhost:8080/catgenome/#/ref?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]'
 
 it \
     "Should generate url for whole root dataset at 1st chr" \
     "./ngb url ${DATASET_ROOT} --location ${CHR}" \
-    'http://localhost:8080/catgenome/#/ref/X?tracks=[{"p":"${DATASET_ROOT}"}]'
+    'http://localhost:8080/catgenome/#/ref/X?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]'
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
