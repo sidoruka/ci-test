@@ -193,7 +193,8 @@ it \
     
 it \
     "Should generate url for whole dataset" \
-    "./ngb url ${DATASET_ROOT}"
+    "./ngb url ${DATASET_ROOT}" \
+    "http://localhost:8080/catgenome/#/ref?tracks=[{"p":"${DATASET_ROOT}"}]"
 
 it \
     "Should generate url for whole root dataset at 1st chr" \
@@ -202,8 +203,7 @@ it \
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
-    "./ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000" \
-    "http://localhost:8080/catgenome/#/ref?tracks=[{"p":"${DATASET_ROOT}"}]"
+    "./ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000"
     
 it \
     "Should generate url for only one BAM file from a root dataset at 1st chr and range 1000bp-2000bp" \
