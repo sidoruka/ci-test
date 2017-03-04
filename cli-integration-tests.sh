@@ -199,7 +199,7 @@ it \
 it \
     "Should generate url for whole root dataset at 1st chr" \
     "./ngb url ${DATASET_ROOT} --location ${CHR}" \
-    "http://localhost:8080/catgenome/#/ref?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]"
+    "http://localhost:8080/catgenome/#/ref/X?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]"
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
