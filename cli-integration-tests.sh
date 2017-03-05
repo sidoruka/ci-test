@@ -139,8 +139,9 @@ cd ..
 for file in scenarios/test-*.sh
 do
     if [[ -f $file ]]; then
+        echo
         echo SCENARIO: $file
-        /bin/bash $file
+        . $file
     fi
 done
 
