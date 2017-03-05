@@ -50,23 +50,27 @@ it \
 it \
     "Should find registered reference by strict name and output in a table format" \
     "ngb search ${REFERENCE_NAME} -t" \
-    "asdc"
+    "${FASTA}"
 
 it \
     "Should list registered dataset and output in a table format" \
-    "ngb list_dataset -t"
+    "ngb list_dataset -t" \
+    "${DATASET_ROOT}"
 
 it \
     "Should find registered GTF file by strict name and output in a table format" \
-    "ngb search ${GTF_NAME} -t"
+    "ngb search ${GTF_NAME} -t" \
+    "${GTF}"
 
 it \
     "Should find registered BAM file by strict name and output in a table format" \
-    "ngb search ${BAM_NAME} -t"
+    "ngb search ${BAM_NAME} -t" \
+    "${BAM}"
 
 it \
     "Should find registered VCF file by strict name and output in a table format" \
-    "ngb search ${VCF_SNP_NAME} -t"
+    "ngb search ${VCF_SNP_NAME} -t" \
+    "${VCF_SNP}"
     
 it \
     "Should generate url for whole dataset" \
@@ -76,19 +80,22 @@ it \
 it \
     "Should generate url for whole root dataset at 1st chr" \
     "ngb url ${DATASET_ROOT} --location ${CHR}" \
-    "http://localhost:8080/catgenome/#/ref/X?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]"
+    "http://localhost:8080/catgenome/#/${REFERENCE_NAME}/${CHR}?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]"
 
 it \
     "Should generate url for whole root dataset at 1st chr and range 1000bp-2000bp" \
-    "ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000"
+    "ngb url ${DATASET_ROOT} --location ${CHR}:1000-2000" \
+    "http://localhost:8080/catgenome/#/${REFERENCE_NAME}/${CHR}/1000/2000?tracks=\[{\"p\":\"${DATASET_ROOT}\"}\]"
     
 it \
     "Should generate url for only one BAM file from a root dataset at 1st chr and range 1000bp-2000bp" \
-    "ngb url ${DATASET_ROOT} ${BAM_NAME} --location ${CHR}:1000-2000"
+    "ngb url ${DATASET_ROOT} ${BAM_NAME} --location ${CHR}:1000-2000" \
+    "http://localhost:8080/catgenome/#/${REFERENCE_NAME}/${CHR}/1000/2000?tracks=\[{\"b\":\"${BAM_NAME}\",\"p\":\"${DATASET_ROOT}\"}\]"
     
 it \
     "Should generate url for only BAM and VCF files from a root dataset at 1st chr and range 1000bp-2000bp" \
-    "ngb url ${DATASET_ROOT} ${BAM_NAME} ${VCF_SNP_NAME} --location ${CHR}:1000-2000"
+    "ngb url ${DATASET_ROOT} ${BAM_NAME} ${VCF_SNP_NAME} --location ${CHR}:1000-2000" \
+    "http://localhost:8080/catgenome/#/${REFERENCE_NAME}/${CHR}/1000/2000?tracks=\[{\"b\":\"${BAM_NAME}\",\"p\":\"${DATASET_ROOT}\"},{\"b\":\"${VCF_SNP_NAME}\",\"p\":\"${DATASET_ROOT}\"}\]"
 
 echo
 echo Scenario 1. Simple Dataset. Clean-up phase - delete registered items
