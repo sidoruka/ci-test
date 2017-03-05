@@ -53,6 +53,8 @@ function it {
   echo
 }  
 
+export -f print_success
+export -f print_error
 export -f skip_it
 export -f it
 
