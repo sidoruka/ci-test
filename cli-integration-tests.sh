@@ -174,11 +174,13 @@ echo ------------------------------
 
 it \
     "Should list registered reference and output in a table format" \
-    "./ngb list_ref -t"
+    "./ngb list_ref -t" \
+    "${FASTA}"
 
 it \
     "Should find registered reference by strict name and output in a table format" \
-    "./ngb search ${REFERENCE_NAME} -t"
+    "./ngb search ${REFERENCE_NAME} -t" \
+    "asdc"
 
 it \
     "Should list registered dataset and output in a table format" \
