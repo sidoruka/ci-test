@@ -64,7 +64,7 @@ export -f it
 export FAILED_COUNT=0
 export PASSED_COUNT=0
 export SKIPPED_COUNT=0
-export NGS_FOLDER=ngs/
+export NGS_FOLDER=`pwd`/ngs/
 export CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin/
 
 # Reference
