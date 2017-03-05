@@ -137,7 +137,7 @@ cd ${CLI_FOLDER}
 
 for file in scenarios/*
 do
-    if [[ -f $file ]] %% [[ $file == test-*.sh ]]; then
+    if [[ -f $file ]] && [[ $file == test-*.sh ]]; then
         /bin/bash $file
     fi
 done
