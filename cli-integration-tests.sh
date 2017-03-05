@@ -62,8 +62,8 @@ export -f it
 export FAILED_COUNT=0
 export PASSED_COUNT=0
 export SKIPPED_COUNT=0
-export NGS_FOLDER=/ngs/
-export CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin
+export NGS_FOLDER=ngs/
+export CLI_FOLDER=${NGS_FOLDER}ngb-cli/bin/
 
 # Reference
 export REFERENCE_NAME=ref
@@ -91,8 +91,9 @@ export VCF_SNP_NAME=vcf_file
 #-----------------INIT WORKING DIRECTORY------------------
 
 # Create integration tests working directory
-echo 'mkdir /${NGS_FOLDER} && cd /${NGS_FOLDER}'
-mkdir /${NGS_FOLDER} && cd /${NGS_FOLDER}
+echo 'mkdir ${NGS_FOLDER} && cd ${NGS_FOLDER}'
+mkdir ${NGS_FOLDER} && cd ${NGS_FOLDER}
+export PATH=$CLI_FOLDER:$PATH
 
 # Temporary staff
 echo 'TEST: Download distr'
@@ -129,15 +130,14 @@ sleep 30
 echo 'cat nohup.out'
 cat nohup.out
 
-# Navigate to CLI command location
-echo 'cd ${CLI_FOLDER}'
-cd ${CLI_FOLDER}
-
 #-------------------RUN SCENARIOS-------------------
 
-for file in scenarios/*
+cd ..
+
+for file in scenarios/test-*.sh
 do
-    if [[ -f $file ]] && [[ $file == test-*.sh ]]; then
+    if [[ -f $file ]]; then
+        echo SCENARIO: $file
         /bin/bash $file
     fi
 done
