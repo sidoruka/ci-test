@@ -1,18 +1,18 @@
 #!/bin/bash
 
-export -f function print_success {
+function print_success {
   echo `tput setaf 2`$1`tput sgr0`
 }
 
-export -f function print_error {
+function print_error {
   echo `tput setaf 1`$1`tput sgr0`
 }
 
-export -f function escape_string {
+function escape_string {
     echo $1 | sed 's/\"/\\"/g' | sed 's/\[/\\[/g' | sed 's/\]/\\]/g'
 }
 
-export -f function skip_it {
+function skip_it {
   echo $1
   echo "--> "$2
   ((SKIPPED_COUNT++))
@@ -20,7 +20,7 @@ export -f function skip_it {
   echo
 }
 
-export -f function it {
+function it {
   echo $1
   echo "--> CMD: "$2
   
@@ -52,6 +52,9 @@ export -f function it {
   
   echo
 }  
+
+export -f skip_it
+export -f it
 
 #-------------INIT VARIABLES-------------
 
