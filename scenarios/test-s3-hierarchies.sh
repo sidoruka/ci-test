@@ -21,14 +21,14 @@ do
 
         for DATASET_NUM_L2 in $(seq 1 $DATASETS_COUNT)
         do
-            CHILD_L2_NAME=${DATASET_CHILD}_${DATASET_NUM_L2}
+            CHILD_L2_NAME=${DATASET_CHILD}_${DATASET_NUM}_${DATASET_NUM_L2}
             it \
                 "Should register child dataset ${CHILD_L2_NAME} for reference" \
                 "ngb reg_dataset ${REFERENCE_NAME} ${CHILD_L2_NAME} -p ${ROOT_L1_NAME}"
 
                 for DATASET_NUM_L3 in $(seq 1 $DATASETS_COUNT)
                 do
-                    CHILD_L3_NAME=${DATASET_CHILD}_${DATASET_NUM_L2}_${DATASET_NUM_L3}
+                    CHILD_L3_NAME=${CHILD_L2_NAME}_${DATASET_NUM_L3}
                     it \
                         "Should register child dataset ${CHILD_L3_NAME} for reference" \
                         "ngb reg_dataset ${REFERENCE_NAME} ${CHILD_L3_NAME} -p ${CHILD_L2_NAME}"

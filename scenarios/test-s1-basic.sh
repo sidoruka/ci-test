@@ -153,9 +153,6 @@ echo
 
 # Datasets commands
 
-## reg_dataset -p
-## <TODO>
-
 ## reg_dataset [file-names]
 ## <TODO>
 
