@@ -2,5 +2,4 @@ sudo: required
 dist: trusty
 language: java
 script: 
-  - sudo chmod 777 cli-integration-tests.sh
   - sudo ./cli-integration-tests.sh
