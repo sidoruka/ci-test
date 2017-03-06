@@ -9,7 +9,7 @@ function print_error {
 }
 
 function escape_string {
-    echo $1 | sed 's/\"/\\"/g' | sed 's/\[/\\[/g' | sed 's/\]/\\]/g'
+  echo $1 | sed 's/\"/\\"/g' | sed 's/\[/\\[/g' | sed 's/\]/\\]/g'
 }
 
 function skip_it {
@@ -82,6 +82,7 @@ export DATASET_CHILD=child_dataset
 export GTF=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz
 export GTF_INDEX=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf.gz.tbi
 export GTF_NAME=genes_file
+export GTF_PLAIN=${NGS_FOLDER}dmel-all-r6.06.sorted.gtf
 
 export BAM=${NGS_FOLDER}agnX1.09-28.trim.dm606.realign.bam
 export BAM_INDEX=${NGS_FOLDER}agnX1.09-28.trim.dm606.realign.bai
@@ -110,7 +111,7 @@ tar -zxvf ngb-cli-2.3.tar.gz
 
 #-----------------DOWNLOAD TEST DATA------------------
 
-echo 'TEST: Download data'
+echo 'Download test data'
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.fai
 wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
@@ -118,6 +119,9 @@ wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.
 wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.bam
 wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.bai
 wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data/agnX1.09-28.trim.dm606.realign.vcf
+
+echo 'Create plain copies of feature files'
+gzip -d -k dmel-all-r6.06.sorted.gtf.gz
 
 #-----------------INIT NGB AND CLI------------------
 # Start NGB as a service
