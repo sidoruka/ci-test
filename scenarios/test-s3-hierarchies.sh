@@ -36,6 +36,18 @@ do
         done
 done
 
+echo
+echo Scenario 3. Hierarchies operations. Will check (search) created hierarchy
+echo ------------------------------
+
+echo
+echo Scenario 3. Hierarchies operations. Will move child nodes between root nodes
+echo ------------------------------
+
+echo
+echo Scenario 3. Hierarchies operations. Will delete all created datasets
+echo ------------------------------
+
 echo ------------------------------
 echo Scenario 3. Finished
 echo
