@@ -89,19 +89,19 @@ echo
 echo Scenario 2. File types. Clean-up reference and dataset
 echo ------------------------------
 
-it \
+skip_it \
     "Should delete root dataset" \
     "ngb del_dataset ${DATASET_ROOT}"
 
-it \
+skip_it \
     "Should remove GTF file from reference" \
     "ngb remove_genes ${REFERENCE_NAME}"
 
-it \
+skip_it \
     "Should delete GTF file" \
     "ngb del_file ${GTF_NAME}"
 
-it \
+skip_it \
     "Should delete reference" \
     "ngb del_ref ${REFERENCE_NAME}"
 

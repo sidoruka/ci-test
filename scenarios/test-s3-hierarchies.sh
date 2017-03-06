@@ -116,7 +116,7 @@ it \
 
 it \
     "Should move ${DATASET_CHILD} from ${DATASET_ROOT}_1 to ${DATASET_ROOT}_2" \
-    "ngb move_dataset ${DATASET_CHILD} ${DATASET_ROOT}_2"
+    "ngb move_dataset ${DATASET_CHILD} -p ${DATASET_ROOT}_2"
 
 # Check dataset is moved created
 # TODO
