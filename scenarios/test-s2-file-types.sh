@@ -49,7 +49,7 @@ function check_file {
         "Should delete default named file ${DEF_FILE_NAME}" \
         "ngb del_file ${DEF_FILE_NAME}"
 
-    if ((HAS_EXPL_NAME)) then; 
+    if ((HAS_EXPL_NAME)); then
         #   - register file with expl name
         it \
             "Should register file ${FULL_FILE_PATH} with explicit name" \
@@ -78,7 +78,7 @@ function check_file {
     fi
 
     #   - register file without index (should fail)
-    if ((HAS_INDEX)) then; 
+    if ((HAS_INDEX)); then
          it \
             "Should faile to register file ${FILE_PATH} with default name" \
             "! ngb reg_file ${REFERENCE_NAME} ${FILE_PATH}"
