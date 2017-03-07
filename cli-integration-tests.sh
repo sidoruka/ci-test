@@ -14,7 +14,7 @@ function escape_string {
 
 function skip_it {
   echo $1
-  echo "--> "$2
+  echo "--> CMD: "$2
   ((SKIPPED_COUNT++))
   echo "SKIPPED"
   echo
@@ -140,16 +140,14 @@ cat nohup.out
 
 cd ..
 
-. scenarios/test-s2-file-types.sh
-
-#for file in scenarios/test-*.sh
-#do
-#    if [[ -f $file ]]; then
-#        echo
-#        echo SCENARIO: $file
-#        . $file
-#    fi
-#done
+for file in scenarios/test-*.sh
+do
+    if [[ -f $file ]]; then
+        echo
+        echo SCENARIO: $file
+        . $file
+    fi
+done
 
 #-------------------PRINT RESULTS-------------------
 
