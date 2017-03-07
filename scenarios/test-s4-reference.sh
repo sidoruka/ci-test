@@ -178,7 +178,7 @@ it \
 # Check reference does not exist
 #TODO
 
-# Resgister first reference to take name
+# Register first reference to take name
 it \
     "Should register reference with explicit name ${REFERENCE_NAME}" \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
@@ -187,6 +187,11 @@ it \
 it \
     "Should fail to register reference with already taken name" \
     "! ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
+
+# Delete first reference
+it \
+    "Should delete reference" \
+    "ngb del_ref ${REFERENCE_NAME}"
 
 echo ------------------------------
 echo Scenario 4. Finished
