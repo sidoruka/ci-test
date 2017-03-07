@@ -26,11 +26,11 @@ function it {
   
   EXEC_CODE=0
   if [ -z "$3" ]; then
-    $2
+    eval $2
     EXEC_CODE=$?
   else
     echo "--> EXP: "$3
-    EXEC_RESULT=`$2`
+    EXEC_RESULT=`eval $2`
     echo $EXEC_RESULT
     EXEC_CODE=$?
     if ! ((EXEC_CODE)); then

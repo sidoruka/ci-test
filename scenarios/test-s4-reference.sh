@@ -87,7 +87,7 @@ echo ------------------------------
 GTF_GZ_NAME=`basename $GTF`
 
 # Register reference with explicit name and gzipped GTF - single line
-it \
+skip_it \
     "Should register reference with explicit name ${REFERENCE_NAME} and gzipped genes ${GTF}?${GTF_INDEX}" \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX}"
 
@@ -95,17 +95,17 @@ it \
 #TODO
 
 # Remove GTF from reference
-it \
+skip_it \
     "Should remove GTF file from reference" \
     "ngb remove_genes ${REFERENCE_NAME}"
 
 # Delete GTF
-it \
+skip_it \
     "Should delete GTF file by file name ${GTF_GZ_NAME}" \
     "ngb del_file ${GTF_GZ_NAME}"
 
 # Delete reference
-it \
+skip_it \
     "Should delete reference" \
     "ngb del_ref ${REFERENCE_NAME}"
 
@@ -119,7 +119,7 @@ echo ------------------------------
 GTF_PLAIN_NAME=`basename $GTF_PLAIN`
 
 # Register reference with explicit name and plain GTF - single line
-it \
+skip_it \
     "Should register reference with explicit name ${REFERENCE_NAME} and plain genes ${GTF_PLAIN}" \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF_PLAIN}"
 
@@ -127,17 +127,17 @@ it \
 #TODO
 
 # Remove GTF from reference
-it \
+skip_it \
     "Should remove GTF file from reference" \
     "ngb remove_genes ${REFERENCE_NAME}"
 
 # Delete GTF
-it \
+skip_it \
     "Should delete GTF file by file name ${GTF_PLAIN_NAME}" \
     "ngb del_file ${GTF_PLAIN_NAME}"
 
 # Delete reference
-it \
+skip_it \
     "Should delete reference" \
     "ngb del_ref ${REFERENCE_NAME}"
 
