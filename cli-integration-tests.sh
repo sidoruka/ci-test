@@ -140,14 +140,16 @@ cat nohup.out
 
 cd ..
 
-for file in scenarios/test-*.sh
-do
-    if [[ -f $file ]]; then
-        echo
-        echo SCENARIO: $file
-        . $file
-    fi
-done
+. scenarios/test-s2-file-types.sh
+
+#for file in scenarios/test-*.sh
+#do
+#    if [[ -f $file ]]; then
+#        echo
+#        echo SCENARIO: $file
+#        . $file
+#    fi
+#done
 
 #-------------------PRINT RESULTS-------------------
 
