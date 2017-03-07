@@ -59,6 +59,8 @@ skip_it \
 
 #   - register duplicate file (should fail)
 
+#   - should fail to register gzipped file without index
+
 
 echo
 echo Scenario 2. File types. BAM

@@ -91,7 +91,7 @@ it \
 # Register BAM file
 it \
     "Should register BAM file ${BAM} with default name" \
-    "ngb reg_file ${REFERENCE_NAME} ${BAM}"
+    "ngb reg_file ${REFERENCE_NAME} ${BAM}?${BAM_INDEX}"
 
 # Add BAM file to dataset
 it \
@@ -112,7 +112,7 @@ it \
 # Register BAM file with explicit name
 it \
     "Should register BAM file ${BAM} with explicit name ${BAM_NAME}" \
-    "ngb reg_file ${REFERENCE_NAME} ${BAM} --name ${BAM_NAME}"
+    "ngb reg_file ${REFERENCE_NAME} ${BAM}?${BAM_INDEX} --name ${BAM_NAME}"
 
 # Add BAM file to dataset by explicit name
 it \
@@ -133,7 +133,7 @@ it \
 # Add BAM file to a dataset without registration
 it \
     "Should add not registered feature file ${BAM} to a dataset ${DATASET_ROOT}" \
-    "ngb add_dataset ${DATASET_ROOT} ${BAM}"
+    "ngb add_dataset ${DATASET_ROOT} ${BAM}?${BAM_INDEX}"
 
 # Remove BAM file from dataset
 it \
