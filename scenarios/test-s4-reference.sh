@@ -87,7 +87,7 @@ echo ------------------------------
 GTF_GZ_NAME=`basename $GTF`
 
 # Register reference with explicit name and gzipped GTF - single line
-skip_it \
+skip_it \ # SKIPPED this and subsequent operations because it reg_ref fails
     "Should register reference with explicit name ${REFERENCE_NAME} and gzipped genes ${GTF}?${GTF_INDEX}" \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF}?${GTF_INDEX}"
 
@@ -119,7 +119,7 @@ echo ------------------------------
 GTF_PLAIN_NAME=`basename $GTF_PLAIN`
 
 # Register reference with explicit name and plain GTF - single line
-skip_it \
+skip_it \ # SKIPPED this and subsequent operations because it reg_ref fails
     "Should register reference with explicit name ${REFERENCE_NAME} and plain genes ${GTF_PLAIN}" \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME} --genes ${GTF_PLAIN}"
 

@@ -155,14 +155,6 @@ it \
     "ngb reg_ref ${FASTA} --name ${REFERENCE_NAME}"
 
 it \
-    "Should register gzipped genes file with explicit name" \
-    "ngb reg_file ${REFERENCE_NAME} ${GTF}?${GTF_INDEX} --name ${GTF_NAME}"
-
-it \
-    "Should assign registered genes file to a reference by name" \
-    "ngb add_genes ${REFERENCE_NAME} ${GTF_NAME}"
-
-it \
     "Should register root dataset for reference" \
     "ngb reg_dataset ${REFERENCE_NAME} ${DATASET_ROOT}"
 
@@ -180,9 +172,7 @@ echo
 echo Scenario 2. File types. VCF
 echo ------------------------------
 
-
 # plain
-
 check_file "${VCF_SNP}" "" "${VCF_SNP_NAME}"
 
 # gzipped
@@ -228,14 +218,6 @@ echo ------------------------------
 it \
     "Should delete root dataset" \
     "ngb del_dataset ${DATASET_ROOT}"
-
-it \
-    "Should remove GTF file from reference" \
-    "ngb remove_genes ${REFERENCE_NAME}"
-
-it \
-    "Should delete GTF file" \
-    "ngb del_file ${GTF_NAME}"
 
 it \
     "Should delete reference" \
