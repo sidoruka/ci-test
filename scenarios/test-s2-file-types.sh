@@ -170,7 +170,7 @@ echo
 echo Scenario 2. File types. BAM
 echo ------------------------------
 
-check_file "${BAM}" "${BAI}" "${BAM_NAME}"
+check_file "${BAM}" "${BAM_INDEX}" "${BAM_NAME}"
 
 echo
 echo Scenario 2. File types. CRAM
