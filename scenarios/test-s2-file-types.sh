@@ -79,7 +79,8 @@ function check_file {
 
     #   - register file without index (should fail)
     if ((HAS_INDEX)); then
-         skip_it \ # SKIPPED because it allows to register GZIPPED file without index
+        # SKIPPED because it allows to register GZIPPED file without index
+         skip_it \ 
             "Should fail to register file ${FILE_PATH} without index" \
             "! ngb reg_file ${REFERENCE_NAME} ${FILE_PATH}"
         
@@ -127,7 +128,8 @@ function check_file {
         "ngb reg_file ${REFERENCE_NAME} ${FULL_FILE_PATH}"
 
     #   - check duplicate
-    skip_it \ # SKIPPED because it always returns zero exit code
+    # SKIPPED because it always returns zero exit code
+    skip_it \ 
         "Should fail to register duplicated file" \
         "! ngb reg_file ${REFERENCE_NAME} ${FULL_FILE_PATH}"
 
