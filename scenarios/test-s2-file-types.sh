@@ -57,6 +57,9 @@ skip_it \
 #   - register file for unexisting dataset (should fail)
 #   - search for file with unexisting dataset (should fail)
 
+#   - register duplicate file (should fail)
+
+
 echo
 echo Scenario 2. File types. BAM
 echo ------------------------------

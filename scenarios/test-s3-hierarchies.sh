@@ -118,7 +118,7 @@ it \
     "Should move ${DATASET_CHILD} from ${DATASET_ROOT}_1 to ${DATASET_ROOT}_2" \
     "ngb move_dataset ${DATASET_CHILD} -p ${DATASET_ROOT}_2"
 
-# Check dataset is moved created
+# Check dataset is moved
 # TODO
 
 # Clean datasets
@@ -134,6 +134,37 @@ it \
     "Should delete root dataset ${DATASET_ROOT}_2" \
     "ngb del_dataset ${DATASET_ROOT}_2"
 
+
+echo
+echo Scenario 3. Hierarchies operations. Negative tests
+echo ------------------------------
+
+# Should fail to register dataset for invalid reference
+it \
+    "Should fail to register dataset for invalid reference" \
+    "! ngb reg_dataset non_existing_ref ${DATASET_ROOT}"
+
+
+# Register first dataset to take name
+it \
+    "Should register dataset ${DATASET_ROOT} for reference ${REFERENCE_NAME}" \
+    "ngb reg_dataset ${REFERENCE_NAME} ${DATASET_ROOT}"
+
+# Should fail to register dataset with a duplicate name
+it \
+    "Should fail to register duplicate dataset" \
+    "! ngb reg_dataset ${REFERENCE_NAME} ${DATASET_ROOT}"
+
+# Delete first dataset
+it \
+    "Should delete dataset ${DATASET_ROOT} for reference ${REFERENCE_NAME}" \
+    "ngb del_dataset ${DATASET_ROOT}"
+
+
+# Should fail to register dataset for invalid parent 
+it \
+    "Should fail to register dataset for invalid parent " \
+    "! ngb reg_dataset ${REFERENCE_NAME} ${DATASET_ROOT} -p non_existing_dataset"
 
 echo
 echo Scenario 3. Hierarchies operations. Clean-up reference
